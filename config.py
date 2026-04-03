@@ -34,6 +34,6 @@ PLAN_MONTHS = {"1_month": 1, "3_month": 3, "6_month": 6}
 PLAN_NAMES  = {"1_month": "1 oylik", "3_month": "3 oylik", "6_month": "6 oylik"}
 
 # ── To'lov ───────────────────────────────────────────
-PAYMENT_CARD  = os.getenv("PAYMENT_CARD", "8600 0000 0000 0000")
-PAYMENT_OWNER = os.getenv("PAYMENT_OWNER", "Admin")
+PAYMENT_CARD  = os.getenv("PAYMENT_CARD", "9860 1266 7183 6719")
+PAYMENT_OWNER = os.getenv("PAYMENT_OWNER", "M. M")
 PAYMENT_ADMIN = int(os.getenv("PAYMENT_ADMIN", str(ADMIN_IDS[0])))
