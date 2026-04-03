@@ -36,24 +36,28 @@ async def start(msg: Message):
         f"👋 Salom, **{msg.from_user.first_name}**!\n\n"
         f"🤖 **ChatSpyer** — AI Avtonom Yordamchi\n\n"
         f"Akkuntingizni ulang — lichkangizga kimdir yozsa "
-        f"**AI o'zi javob beradi**. Siz hech narsa qilmaysiz!\n\n"
+        f"**AI o'zi javob beradi**.\n\n"
         f"Tarif: {tarif}"
     )
+
     await msg.answer(text, reply_markup=main_kb(active, user.is_premium), parse_mode="Markdown")
 
 @router.callback_query(F.data == "back_main")
 async def back_main(cb: CallbackQuery):
     user = await get_user(cb.from_user.id)
     active = is_running(cb.from_user.id)
+
     if user and user.is_premium and user.premium_until:
         days = (user.premium_until - datetime.utcnow()).days
         tarif = f"💎 Premium — {days} kun qoldi"
     else:
         tarif = f"🆓 Bepul — kuniga {FREE_DAILY_LIMIT} ta xabar"
 
+    holat = "🟢 Ishlayapti" if active else "🔴 To'xtatilgan"
+
     await cb.message.edit_text(
         f"🏠 **Asosiy menyu**\n"
-        f"Holat: {'🟢 Ishlayapti' if active else \"🔴 To'xtatilgan\"}\n"
+        f"Holat: {holat}\n"
         f"Tarif: {tarif}",
         reply_markup=main_kb(active, user.is_premium if user else False),
         parse_mode="Markdown"
@@ -62,43 +66,46 @@ async def back_main(cb: CallbackQuery):
 @router.callback_query(F.data == "myaccount")
 async def my_account(cb: CallbackQuery):
     user = await get_user(cb.from_user.id)
+
     if not user:
         await cb.answer("Topilmadi")
         return
+
     active = is_running(user.id)
+
     from config import PREMIUM_DAILY_LIMIT
     limit = PREMIUM_DAILY_LIMIT if user.is_premium else FREE_DAILY_LIMIT
 
+    holat = "🟢 AI ishlayapti" if active else "🔴 AI to'xtatilgan"
+
     text = (
         f"📊 **Hisobim**\n\n"
-        f"{'🟢 AI ishlayapti' if active else \"🔴 AI to'xtatilgan\"}\n\n"
+        f"{holat}\n\n"
         f"Bugun: **{user.daily_count}** / {limit}\n"
         f"Jami javoblar: **{user.total_answered}**\n"
         f"Jami kelgan: **{user.total_received}**\n"
         f"Tarif: {'💎 Premium' if user.is_premium else '🆓 Bepul'}\n"
     )
+
     if user.is_premium and user.premium_until:
         text += f"Tugaydi: **{user.premium_until.strftime('%d.%m.%Y')}**\n"
 
     kb = InlineKeyboardBuilder()
     kb.button(text="🔙 Orqaga", callback_data="back_main")
+
     await cb.message.edit_text(text, reply_markup=kb.as_markup(), parse_mode="Markdown")
 
 @router.callback_query(F.data == "help_menu")
 async def help_menu(cb: CallbackQuery):
     text = (
         "❓ **Qanday ishlaydi?**\n\n"
-        "1️⃣ **Akkunt ulang** — telefon raqam + SMS kod\n"
-        "2️⃣ **AI yoqing** — tugmani bosing\n"
-        "3️⃣ **Tayyor!** — kimdir yozsa AI o'zi javob beradi\n\n"
-        "**AI sozlamalari:**\n"
-        "• Uslub: do'stona / rasmiy / qisqa / hazilkash\n"
-        "• Til: o'zbek / rus / ingliz\n"
-        "• Persona: AI kimga o'xshab javob bersin\n"
-        "• Kechikish: javob qancha vaqtda kelsin\n"
-        "• O'qildi belgisi: avtomatik o'qildi ko'rsatsin\n\n"
-        "**Muammo?** Admin bilan bog'laning"
+        "1️⃣ Akkunt ulang\n"
+        "2️⃣ AI yoqing\n"
+        "3️⃣ Tayyor — AI o‘zi javob beradi\n\n"
+        "Muammo bo‘lsa admin bilan bog‘laning"
     )
+
     kb = InlineKeyboardBuilder()
     kb.button(text="🔙 Orqaga", callback_data="back_main")
+
     await cb.message.edit_text(text, reply_markup=kb.as_markup(), parse_mode="Markdown")
