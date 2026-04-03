@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ── Main Bot ─────────────────────────────────────────
-BOT_TOKEN     = os.getenv("7810689974:AAEhQWKg14b1SwFEiuad-P2R8SMCFiusQbc", "")
+BOT_TOKEN     = os.getenv("7810689974:AAHbALRBHfRtEgvmbr-hFnNaE4CmG-3ImKM", "")
 ADMIN_IDS     = list(map(int, os.getenv("ADMIN_IDS", "6498632307").split(",")))
 
 # ── Telegram API ─────────────────────────────────────
