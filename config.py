@@ -3,16 +3,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ── Main Bot ─────────────────────────────────────────
-BOT_TOKEN     = os.getenv("BOT_TOKEN", "")
-ADMIN_IDS     = list(map(int, os.getenv("ADMIN_IDS", "123456789").split(",")))
+BOT_TOKEN     = os.getenv("7810689974:AAEhQWKg14b1SwFEiuad-P2R8SMCFiusQbc", "")
+ADMIN_IDS     = list(map(int, os.getenv("ADMIN_IDS", "6498632307").split(",")))
 
 # ── Telegram API ─────────────────────────────────────
-API_ID        = int(os.getenv("API_ID", "0"))
-API_HASH      = os.getenv("API_HASH", "")
+API_ID        = int(os.getenv("API_ID", "23651528"))
+API_HASH      = os.getenv("API_HASH", "ca42cf77a78ee409550aac24e179c87e")
 
 # ── AI (Groq primary + Gemini fallback) ─────────────
-GROQ_API_KEY   = os.getenv("GROQ_API_KEY", "")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GROQ_API_KEY   = os.getenv("GROQ_API_KEY", "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")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyAwNgcob0p0We23O0k8eMlUddWgXxdyZLI")
 
 GROQ_MODEL   = "llama-3.3-70b-versatile"
 GEMINI_MODEL = "gemini-2.0-flash"
