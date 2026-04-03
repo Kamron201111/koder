@@ -53,7 +53,7 @@ async def back_main(cb: CallbackQuery):
 
     await cb.message.edit_text(
         f"🏠 **Asosiy menyu**\n"
-        f"Holat: {'🟢 Ishlayapti' if active else '🔴 To\\'xtatilgan'}\n"
+        f"Holat: {'🟢 Ishlayapti' if active else \"🔴 To'xtatilgan\"}\n"
         f"Tarif: {tarif}",
         reply_markup=main_kb(active, user.is_premium if user else False),
         parse_mode="Markdown"
@@ -71,7 +71,7 @@ async def my_account(cb: CallbackQuery):
 
     text = (
         f"📊 **Hisobim**\n\n"
-        f"{'🟢 AI ishlayapti' if active else '🔴 AI to\\'xtatilgan'}\n\n"
+        f"{'🟢 AI ishlayapti' if active else \"🔴 AI to'xtatilgan\"}\n\n"
         f"Bugun: **{user.daily_count}** / {limit}\n"
         f"Jami javoblar: **{user.total_answered}**\n"
         f"Jami kelgan: **{user.total_received}**\n"
