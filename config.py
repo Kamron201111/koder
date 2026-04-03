@@ -26,9 +26,9 @@ PREMIUM_DAILY_LIMIT = 999999
 
 # ── Premium narxlar (UZS) ────────────────────────────
 PRICES = {
-    "1_month":  49900,
-    "3_month": 119900,
-    "6_month": 199900,
+    "1_month":  20000,
+    "3_month": 50000,
+    "6_month": 75000,
 }
 PLAN_MONTHS = {"1_month": 1, "3_month": 3, "6_month": 6}
 PLAN_NAMES  = {"1_month": "1 oylik", "3_month": "3 oylik", "6_month": "6 oylik"}
