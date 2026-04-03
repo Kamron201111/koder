@@ -18,7 +18,7 @@ GROQ_MODEL   = "llama-3.3-70b-versatile"
 GEMINI_MODEL = "gemini-2.0-flash"
 
 # ── Database ─────────────────────────────────────────
-DATABASE_URL  = os.getenv("DATABASE_URL", "postgresql+asyncpg://user:pass@localhost/chatspyer")
+DATABASE_URL  = os.getenv("DATABASE_URL", "postgresql://postgres:cAvEEUUQesAOVYQmjmMrOAzcbhuMMXsD@postgres.railway.internal:5432/railway")
 
 # ── Limitlar ─────────────────────────────────────────
 FREE_DAILY_LIMIT    = 30
